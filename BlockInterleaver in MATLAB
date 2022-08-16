@@ -1,0 +1,49 @@
+% distance between bits is 5 and the codeword length is 7 
+% create a bitstream of length 35
+N = 7;
+D = 5;
+bits = randi([0 1],1,N*D);
+%Interleaver, Bits into the matrix as rows, out of matrix as columns
+int_mat = zeros(D,N);
+count = 1;
+for j =1:D
+    for i = 1:N
+        int_mat(j,i) = bits(count);
+        count = count +1;
+    end
+end
+interleaved_bits = zeros(1,length(bits));
+count1 = 1;
+for i = 1:N
+    for j = 1:D
+        interleaved_bits(1,count1) = int_mat(j,i);
+        count1 = count1 +1;
+    end
+end
+
+%Deinterleaver, bits inputted as columns, outputted as rows
+deint_mat = zeros(D,N);
+count2 = 1;
+for i = 1:N
+    for j =1:D
+        deint_mat(j,i) = interleaved_bits(1,count2);
+        count2 = count2 + 1;
+    end
+end
+deinterleaved_bits = zeros(1,length(bits));
+count3 = 1;
+for j = 1:D
+    for i = 1:N
+        deinterleaved_bits(1,count3)=deint_mat(j,i);
+        count3 = count3 + 1;
+    end
+end
+
+Original_bit_array = sprintf('%g',bits)
+Interleaved_bit_array = sprintf('%g',interleaved_bits)
+Deinterleaved_bit_array = sprintf('%g',deinterleaved_bits)
+
+if Original_bit_array == Deinterleaved_bit_array
+    sprintf('The program is working correctly')
+end
+
