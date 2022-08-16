@@ -46,8 +46,6 @@ def chooseProgram(userInput, codewordLength, separationDistance):
 
 
 
-
-
 if __name__ == '__main__':
     
     n = int(input('Enter the value of n (Codeword block length): '))       # Code word length
@@ -57,5 +55,3 @@ if __name__ == '__main__':
     bits = chooseProgram(programfunction,n,d)
     
    
-    
-    
