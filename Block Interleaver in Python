@@ -1,13 +1,17 @@
+
+
+
+
+
+
 if __name__ == '__main__':
     
     n = int(input('Enter the value of n (Codeword block length): '))       # Code word length
     d = int(input('Enter the value of d (Separation distance): '))       # Separation distance
     
+    programfunction = input('How do you want the program to work, bits or test:')
+    bits = chooseProgram(programfunction,n,d)
     
-    
-    # Generate sequential data
-    sequential_bits = np.arange(n*d)
-    # Generate random bit data 
-    bits = np.random.randint(0, 2, n * d)
+   
     
     
