@@ -1,0 +1,4 @@
+if __name__ == '__main__':
+    
+    n = int(input('Enter the value of n (Codeword block length): '))       # Code word length
+    d = int(input('Enter the value of d (Separation distance): '))       # Separation distance
