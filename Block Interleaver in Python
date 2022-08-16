@@ -1,3 +1,35 @@
+import numpy as np 
+
+class BlockInterleaver:
+    def __init__(self, word_length, separation_distance=2**3):
+        self.D = separation_distance
+        self.N = word_length
+        self.block_size = self.D * self.N
+
+    def interleave(self, bitarray):
+        """
+        This function takes in the bitarray as an input
+        It returns an array of same size jumbled
+        It reads the block length and separation distance from the intialization above
+
+        """
+        bitarray = np.reshape(bitarray,(self.D,self.N))
+        bitarray = np.transpose(bitarray)
+        bitarray = np.ravel(bitarray)
+        return bitarray
+
+    def deinterleave(self, bitarray):
+        """
+        This function performs the deiniterleaving of the array.
+        It takes in an array as an input, 
+        and returns the array of same size but in the correct order.
+        
+        """
+        bitarray = np.reshape(bitarray,(self.N,self.D))
+        bitarray = np.transpose(bitarray)
+        bitarray = np.ravel(bitarray)
+        return bitarray
+
 def chooseProgram(userInput, codewordLength, separationDistance):
     """
     This function takes in the user entered values and return the necessary array
