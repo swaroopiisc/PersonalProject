@@ -1,4 +1,16 @@
+def chooseProgram(userInput, codewordLength, separationDistance):
+    """
+    This function takes in the user entered values and return the necessary array
+    It has to options, text or bits.
+    for ease of convinience, only the bits option is mentioned in the conditional statements below
+    """
 
+    if userInput == 'bits':
+        bits = np.random.randint(0, 2,  codewordLength* separationDistance)        
+    else:
+        bits = np.arange(codewordLength* separationDistance)
+    
+    return bits
 
 
 
