@@ -54,4 +54,12 @@ if __name__ == '__main__':
     programfunction = input('How do you want the program to work, bits or test:')
     bits = chooseProgram(programfunction,n,d)
     
-   
+    # Create an Interleaver
+    interleaver = BlockInterleaver(n, d)
+    interleaved = interleaver.interleave(bits)
+    deinterleaved = interleaver.deinterleave(interleaved)
+    
+    print('Original bitarray: {}'.format(bits))
+    print('Interleaved:       {}'.format(interleaved))
+    print('De-interleaved:    {}'.format(deinterleaved))
+    print('Original data = Deinterleaved: {}'.format(np.array_equal(bits, deinterleaved))) 
