@@ -1,6 +1,8 @@
 #include<stdio.h>
 #include<stdlib.h>
 
+int * chooseProgram(int n, int d,char array[]);
+
 int main(void){
     int n=0,d=0,ND=0;
     time_t time1;
@@ -13,7 +15,32 @@ int main(void){
     printf("How do you want the program to work, bits or test:\n");
     scanf("%s",userInput);
     
-    
+    int * bits = chooseProgram(n,d,userInput);
     
     return 0;
+}
+
+int * chooseProgram(int n, int d,char userInput[]){
+    int *bits = malloc(sizeof(int)*n*d);
+    time_t time1;
+
+    if(userInput[0] == 'b' && userInput[1] == 'i' && userInput[2] == 't' && userInput[3] == 's'){
+        srand((unsigned)time(&time1));
+        for(int i=0;i<(n*d);i++){
+            bits[i] = rand()%2;
+            //printf("%d ",bits[i]);
+        }
+        //printf("\n");
+        //printf("User input is: %s",userInput);
+                
+    } else {
+        for(int i=0;i<(n*d);i++){
+            bits[i] = i;
+            //printf("%d ",bits[i]);
+        }
+        //printf("\n");
+        //printf("User input is: %s",userInput);
+    }
+
+    return bits;
 }
