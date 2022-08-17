@@ -2,6 +2,7 @@
 #include<stdlib.h>
 
 int * chooseProgram(int n, int d,char array[]);
+void printbits(int ND,int *bits);
 
 int main(void){
     int n=0,d=0,ND=0;
@@ -16,6 +17,7 @@ int main(void){
     scanf("%s",userInput);
     
     int * bits = chooseProgram(n,d,userInput);
+    printbits(ND,bits);
     
     return 0;
 }
@@ -43,4 +45,11 @@ int * chooseProgram(int n, int d,char userInput[]){
     }
 
     return bits;
+}
+
+void printbits(int ND,int *bits){
+    for(int i= 0; i<ND ; i++){
+        printf("%d ",bits[i]);
+    }
+    printf("\n");
 }
