@@ -12,5 +12,8 @@ int main(void){
     char userInput[5];  
     printf("How do you want the program to work, bits or test:\n");
     scanf("%s",userInput);
+    
+    
+    
     return 0;
 }
