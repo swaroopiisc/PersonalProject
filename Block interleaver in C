@@ -3,6 +3,8 @@
 
 int * chooseProgram(int n, int d,char array[]);
 void printbits(int ND,int *bits);
+int * interleaving(int n,int d,int *bits);
+int * deinterleaving(int n,int d,int *interleaved);
 
 int main(void){
     int n=0,d=0,ND=0;
@@ -18,6 +20,10 @@ int main(void){
     
     int * bits = chooseProgram(n,d,userInput);
     printbits(ND,bits);
+    int * interleaved = interleaving(n,d,bits);
+    printbits(ND,interleaved);
+    int * deinterleaved = deinterleaving(n,d,interleaved);
+    printbits(ND,deinterleaved);
     
     return 0;
 }
@@ -52,4 +58,51 @@ void printbits(int ND,int *bits){
         printf("%d ",bits[i]);
     }
     printf("\n");
+}
+
+int * interleaving(int n,int d,int *bits){
+    int * interleaved_bits = malloc(sizeof(int)*(n*d));
+    int **interleaved = malloc(sizeof(int*)*n);
+    for(int i=0;i<n;i++){
+        interleaved[i] = malloc(sizeof(int)*d);        
+    }
+    int counter=0;
+    for(int i=0;i<d;i++){
+        for(int j=0;j<n;j++){
+            interleaved[i][j] = bits[counter];
+            counter++;
+        }
+    }
+    counter = 0;
+    for(int i=0;i<n;i++){
+        for(int j=0;j<d;j++){
+            interleaved_bits[counter] = interleaved[j][i];
+            counter++;
+        }
+    }
+    return interleaved_bits;
+}
+
+int * deinterleaving(int n,int d,int *interleaved){
+    int * deinterleaved_bits = malloc(sizeof(int)*(n*d));
+    int **deinterleaved = malloc(sizeof(int*)*n);
+    for(int i=0;i<n;i++){
+        deinterleaved[i] = malloc(sizeof(int)*d); 
+    }
+    int counter = 0;
+    for(int j=0;j<n;j++){
+        for(int i=0;i<d;i++){
+            deinterleaved[i][j] = interleaved[counter];
+            counter++;
+        }
+    }
+    counter = 0;
+    for(int i=0;i<d;i++){
+        for(int j=0;j<n;j++){
+            deinterleaved_bits[counter] = deinterleaved[i][j];
+            counter++;
+        }
+    }
+    
+    return deinterleaved_bits;
 }
